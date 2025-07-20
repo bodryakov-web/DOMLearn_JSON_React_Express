@@ -128,7 +128,7 @@ export default function Home() {
                     </div>
 
                     {/* Sections */}
-                    <div className="space-y-2">
+                    <div className="space-y-2 mb-4">
                       {level.sections.map((sectionId, index) => (
                         <div
                           key={sectionId}
@@ -141,6 +141,20 @@ export default function Home() {
                           <ChevronRight className="h-4 w-4 text-muted-foreground" />
                         </div>
                       ))}
+                    </div>
+                    
+                    {/* Action Buttons */}
+                    <div className="flex space-x-2">
+                      <Button asChild variant="default" size="sm">
+                        <Link href={`/level/${level.id}`}>
+                          Обзор уровня
+                        </Link>
+                      </Button>
+                      <Button asChild variant="outline" size="sm">
+                        <Link href={`/lesson/${level.id}/section1/lesson1`}>
+                          Начать изучение
+                        </Link>
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
