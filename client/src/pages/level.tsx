@@ -94,18 +94,23 @@ export default function LevelPage() {
         {/* Sections Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {currentLevel.sections.map((sectionId, sectionIndex) => (
-            <Card key={sectionId} className="hover:shadow-lg transition-shadow">
-              <CardHeader 
-                className="pb-4 cursor-pointer hover:bg-muted/50 transition-colors"
-                onClick={() => {
-                  console.log('Переход на раздел:', `/section/${levelId}/${sectionId}`);
-                  setLocation(`/section/${levelId}/${sectionId}`);
-                }}
-              >
+            <Card 
+              key={sectionId} 
+              className="hover:shadow-lg transition-shadow cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('КЛИК ПО КАРТОЧКЕ:', `/section/${levelId}/${sectionId}`);
+                setLocation(`/section/${levelId}/${sectionId}`);
+              }}
+            >
+              <CardHeader className="pb-4">
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <BookOpen className="h-5 w-5 text-primary" />
-                    <span className="text-blue-600 hover:text-blue-800">Раздел {sectionIndex + 1}</span>
+                    <span className="text-blue-600 hover:text-blue-800 font-semibold">
+                      Раздел {sectionIndex + 1} - КЛИКНИ МЕНЯ!
+                    </span>
                   </div>
                   <ChevronRight className="h-5 w-5 text-muted-foreground" />
                 </CardTitle>
@@ -135,18 +140,7 @@ export default function LevelPage() {
                   </div>
                 </div>
                 
-                <div className="mt-4 space-y-2">
-                  <Link href={`/section/${levelId}/${sectionId}`}>
-                    <Button variant="outline" className="w-full">
-                      Обзор раздела
-                    </Button>
-                  </Link>
-                  <Link href={`/lesson/${levelId}/${sectionId}/lesson1`}>
-                    <Button className="w-full">
-                      Начать изучение
-                    </Button>
-                  </Link>
-                </div>
+
               </CardContent>
             </Card>
           ))}
