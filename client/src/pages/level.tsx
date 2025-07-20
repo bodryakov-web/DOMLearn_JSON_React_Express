@@ -96,31 +96,27 @@ export default function LevelPage() {
           {currentLevel.sections.map((sectionId, sectionIndex) => (
             <Card key={sectionId} className="hover:shadow-lg transition-shadow">
               <CardHeader className="pb-4">
-                <CardTitle>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <BookOpen className="h-5 w-5 text-primary" />
-                      <a 
-                        href={`/section/${levelId}/${sectionId}`}
-                        style={{ 
-                          color: 'blue', 
-                          fontSize: '18px', 
-                          fontWeight: 'bold',
-                          textDecoration: 'underline',
-                          cursor: 'pointer'
-                        }}
-                        onClick={(e) => {
-                          console.log('КЛИК ПО ССЫЛКЕ РАБОТАЕТ!', `/section/${levelId}/${sectionId}`);
-                          e.preventDefault();
-                          setLocation(`/section/${levelId}/${sectionId}`);
-                        }}
-                      >
-                        🔗 РАЗДЕЛ {sectionIndex + 1} (КЛИКНИ МЕНЯ)
-                      </a>
-                    </div>
-                    <ChevronRight className="h-5 w-5 text-muted-foreground" />
+                <CardTitle className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <BookOpen className="h-5 w-5 text-primary" />
+                    <span>Раздел {sectionIndex + 1}</span>
                   </div>
+                  <ChevronRight className="h-5 w-5 text-muted-foreground" />
                 </CardTitle>
+                
+                {/* Тестовая кнопка перехода */}
+                <div className="mt-2">
+                  <Button 
+                    variant="link" 
+                    className="text-blue-600 underline p-0 h-auto font-bold"
+                    onClick={() => {
+                      console.log('ТЕСТ: Переход на раздел', `/section/${levelId}/${sectionId}`);
+                      setLocation(`/section/${levelId}/${sectionId}`);
+                    }}
+                  >
+                    ➡️ Перейти к разделу {sectionIndex + 1}
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">
