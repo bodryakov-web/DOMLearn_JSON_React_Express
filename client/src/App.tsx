@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import Home from "@/pages/home";
+import Level from "@/pages/level";
 import Lesson from "@/pages/lesson";
 import AdminPanel from "@/pages/admin-panel";
 import NotFound from "@/pages/not-found";
@@ -13,6 +14,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/level/:levelId" component={Level} />
       <Route path="/lesson/:levelId/:sectionId/:lessonId" component={Lesson} />
       <Route path="/bod" component={AdminPanel} />
       <Route component={NotFound} />

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Sidebar from "@/components/sidebar";
+import MobileNavigation from "@/components/mobile-navigation";
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
@@ -33,8 +34,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
-              <Code className="h-8 w-8 text-primary" />
-              <h1 className="text-xl font-bold">JavaScript Learning</h1>
+              <MobileNavigation levelsStructure={levelsStructure} />
+              <Code className="h-8 w-8 text-primary hidden md:block" />
+              <h1 className="text-xl font-bold hidden md:block">JavaScript Learning</h1>
+              <div className="md:hidden">
+                <Code className="h-6 w-6 text-primary" />
+              </div>
             </div>
             
             <div className="flex items-center space-x-4">
@@ -52,18 +57,45 @@ export default function Home() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
+          {/* Sidebar - only on desktop */}
+          <div className="lg:col-span-1 hidden md:block">
             <Sidebar levelsStructure={levelsStructure} />
           </div>
 
           {/* Main Content */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 md:col-span-1">
             <div className="mb-8">
               <h1 className="text-4xl font-bold mb-4">Изучение JavaScript</h1>
               <p className="text-xl text-muted-foreground">
                 Комплексный курс для изучения JavaScript с нуля до продвинутого уровня
               </p>
+            </div>
+
+            {/* Mobile Level Cards */}
+            <div className="md:hidden mb-8">
+              <h2 className="text-2xl font-semibold mb-4">Выберите уровень</h2>
+              <div className="grid gap-4">
+                {levelsStructure?.levels.map((level) => (
+                  <Link key={level.id} href={`/level/${level.id}`}>
+                    <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+                      <CardHeader>
+                        <CardTitle className="flex items-center justify-between">
+                          <div className="flex items-center space-x-3">
+                            <BookOpen className="h-5 w-5 text-primary" />
+                            <span>{level.title}</span>
+                          </div>
+                          <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-sm text-muted-foreground">
+                          {level.sections.length} разделов для изучения
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
             </div>
 
             {/* Levels Grid */}
