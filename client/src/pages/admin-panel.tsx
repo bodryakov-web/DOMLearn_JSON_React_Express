@@ -8,7 +8,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { LogOut, Settings, BookOpen, Edit, Plus } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { LogOut, Settings, BookOpen, Edit, Plus, Save, Pencil } from "lucide-react";
 import RichTextEditor from "@/components/rich-text-editor";
 
 export default function AdminPanel() {
@@ -19,6 +21,8 @@ export default function AdminPanel() {
   const [selectedSectionId, setSelectedSectionId] = useState<string>("");
   const [selectedLessonId, setSelectedLessonId] = useState<string>("");
   const [activeTab, setActiveTab] = useState("structure");
+  const [editingLevelId, setEditingLevelId] = useState<string | null>(null);
+  const [editingLevelTitle, setEditingLevelTitle] = useState("");
 
   const { data: levelsStructure } = useQuery({
     queryKey: ["/api/levels"],
@@ -57,6 +61,51 @@ export default function AdminPanel() {
     setActiveTab("lessons");
   };
 
+  const startEditingLevel = (levelId: string, currentTitle: string) => {
+    setEditingLevelId(levelId);
+    setEditingLevelTitle(currentTitle);
+  };
+
+  const cancelEditingLevel = () => {
+    setEditingLevelId(null);
+    setEditingLevelTitle("");
+  };
+
+  // Мутация для обновления названия уровня
+  const updateLevelMutation = useMutation({
+    mutationFn: ({ levelId, title }: { levelId: string; title: string }) => 
+      api.updateLevel(levelId, { title }),
+    onSuccess: () => {
+      toast({
+        title: "Уровень обновлен",
+        description: "Название уровня успешно изменено",
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/levels"] });
+      setEditingLevelId(null);
+      setEditingLevelTitle("");
+    },
+    onError: () => {
+      toast({
+        title: "Ошибка",
+        description: "Не удалось обновить название уровня",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const saveLevel = () => {
+    if (!editingLevelId || !editingLevelTitle.trim()) {
+      toast({
+        title: "Ошибка",
+        description: "Название не может быть пустым",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    updateLevelMutation.mutate({ levelId: editingLevelId, title: editingLevelTitle });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Admin Header */}
@@ -81,8 +130,9 @@ export default function AdminPanel() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="structure">Структура курса</TabsTrigger>
+            <TabsTrigger value="levels">Управление уровнями</TabsTrigger>
             <TabsTrigger value="lessons">Редактор уроков</TabsTrigger>
             <TabsTrigger value="settings">Настройки</TabsTrigger>
           </TabsList>
@@ -143,6 +193,77 @@ export default function AdminPanel() {
                               </div>
                             </div>
                           ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="levels">
+            <Card>
+              <CardHeader>
+                <CardTitle>Управление уровнями</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {levelsStructure?.levels.map((level) => (
+                    <Card key={level.id}>
+                      <CardHeader>
+                        <CardTitle className="flex items-center justify-between">
+                          {editingLevelId === level.id ? (
+                            <div className="flex items-center space-x-2 w-full">
+                              <Input
+                                value={editingLevelTitle}
+                                onChange={(e) => setEditingLevelTitle(e.target.value)}
+                                className="flex-1"
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter') saveLevel();
+                                  if (e.key === 'Escape') cancelEditingLevel();
+                                }}
+                                autoFocus
+                              />
+                              <Button
+                                onClick={saveLevel}
+                                size="sm"
+                                disabled={updateLevelMutation.isPending}
+                                className="bg-green-600 hover:bg-green-700"
+                              >
+                                <Save className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                onClick={cancelEditingLevel}
+                                variant="outline"
+                                size="sm"
+                                disabled={updateLevelMutation.isPending}
+                              >
+                                Отмена
+                              </Button>
+                            </div>
+                          ) : (
+                            <>
+                              <div className="flex items-center">
+                                <BookOpen className="h-5 w-5 mr-2" />
+                                {level.title}
+                              </div>
+                              <Button
+                                onClick={() => startEditingLevel(level.id, level.title)}
+                                variant="outline"
+                                size="sm"
+                              >
+                                <Pencil className="h-4 w-4 mr-2" />
+                                Изменить название
+                              </Button>
+                            </>
+                          )}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-muted-foreground">{level.description}</p>
+                        <div className="mt-4 text-sm">
+                          <strong>Разделов:</strong> {level.sections.length}
                         </div>
                       </CardContent>
                     </Card>

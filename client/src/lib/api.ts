@@ -19,6 +19,15 @@ export const api = {
     if (!response.ok) throw new Error("Failed to update levels structure");
   },
 
+  async updateLevel(levelId: string, data: { title: string }): Promise<void> {
+    const response = await fetch(`${API_BASE}/levels/${levelId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) throw new Error("Failed to update level");
+  },
+
   // Lessons
   async getLesson(levelId: string, sectionId: string, lessonId: string): Promise<Lesson> {
     const response = await fetch(`${API_BASE}/lessons/${levelId}/${sectionId}/${lessonId}`);

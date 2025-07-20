@@ -19,6 +19,7 @@ export interface IStorage {
   // Levels and structure
   getLevelsStructure(): Promise<LevelsStructure>;
   updateLevelsStructure(structure: LevelsStructure): Promise<void>;
+  updateLevel(levelId: string, data: { title: string }): Promise<void>;
   
   // Lessons
   getLesson(levelId: string, sectionId: string, lessonId: string): Promise<Lesson | null>;
@@ -88,6 +89,22 @@ export class FileStorage implements IStorage {
     await this.ensureDirectoryExists(DATA_DIR);
     const filePath = path.join(DATA_DIR, 'levels.json');
     await fs.writeFile(filePath, JSON.stringify(structure, null, 2));
+  }
+
+  async updateLevel(levelId: string, data: { title: string }): Promise<void> {
+    const structure = await this.getLevelsStructure();
+    const levelIndex = structure.levels.findIndex(level => level.id === levelId);
+    
+    if (levelIndex === -1) {
+      throw new Error(`Level with id ${levelId} not found`);
+    }
+    
+    structure.levels[levelIndex] = {
+      ...structure.levels[levelIndex],
+      title: data.title
+    };
+    
+    await this.updateLevelsStructure(structure);
   }
 
   async getLesson(levelId: string, sectionId: string, lessonId: string): Promise<Lesson | null> {

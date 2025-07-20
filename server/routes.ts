@@ -25,6 +25,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Update individual level (admin only)
+  app.patch("/api/levels/:levelId", async (req, res) => {
+    try {
+      const { levelId } = req.params;
+      const { title } = req.body;
+      
+      if (!title || typeof title !== 'string') {
+        return res.status(400).json({ error: "Title is required" });
+      }
+      
+      await storage.updateLevel(levelId, { title });
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update level" });
+    }
+  });
+
   // Get lesson content
   app.get("/api/lessons/:levelId/:sectionId/:lessonId", async (req, res) => {
     try {
