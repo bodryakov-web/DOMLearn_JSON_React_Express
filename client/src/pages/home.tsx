@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Moon, Sun, Code, BookOpen, Users, ChevronRight } from "lucide-react";
+import { Moon, Sun, Code, BookOpen, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import { api } from "@/lib/api";
 import { useTheme } from "@/components/theme-provider";
@@ -45,13 +45,6 @@ export default function Home() {
               >
                 {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
               </Button>
-              
-              <Link href="/bod">
-                <Button>
-                  <Users className="h-4 w-4 mr-2" />
-                  Админ
-                </Button>
-              </Link>
             </div>
           </div>
         </div>

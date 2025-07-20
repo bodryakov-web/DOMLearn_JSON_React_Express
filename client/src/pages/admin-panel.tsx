@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AdminUserSchema, type AdminUser } from "@shared/schema";
 import { api } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -10,13 +13,17 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { LogOut, Settings, BookOpen, Edit, Plus, Save, Pencil } from "lucide-react";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Checkbox } from "@/components/ui/checkbox";
+import { LogOut, Settings, BookOpen, Edit, Plus, Save, Pencil, Users } from "lucide-react";
 import RichTextEditor from "@/components/rich-text-editor";
 
 export default function AdminPanel() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [selectedLevelId, setSelectedLevelId] = useState<string>("");
   const [selectedSectionId, setSelectedSectionId] = useState<string>("");
   const [selectedLessonId, setSelectedLessonId] = useState<string>("");
@@ -27,19 +34,60 @@ export default function AdminPanel() {
   const { data: levelsStructure } = useQuery({
     queryKey: ["/api/levels"],
     queryFn: () => api.getLevelsStructure(),
+    enabled: isAuthenticated === true,
   });
 
-  // Check admin authentication
+  const form = useForm<AdminUser>({
+    resolver: zodResolver(AdminUserSchema),
+    defaultValues: {
+      username: "",
+      password: "",
+      rememberMe: false,
+    },
+  });
+
+  // Check admin authentication on mount
   useEffect(() => {
     const adminToken = localStorage.getItem("admin-token") || sessionStorage.getItem("admin-token");
-    if (!adminToken) {
-      setLocation("/bod");
+    setIsAuthenticated(!!adminToken);
+  }, []);
+
+  const onSubmit = async (values: AdminUser) => {
+    setIsLoggingIn(true);
+    try {
+      const result = await api.adminLogin(values.username, values.password);
+      
+      if (result.success) {
+        // Store admin token
+        if (values.rememberMe) {
+          localStorage.setItem("admin-token", result.token || "");
+        } else {
+          sessionStorage.setItem("admin-token", result.token || "");
+        }
+        
+        setIsAuthenticated(true);
+        toast({
+          title: "Успешный вход",
+          description: "Добро пожаловать в админ-панель!",
+        });
+      } else {
+        throw new Error("Неверные данные для входа");
+      }
+    } catch (error) {
+      toast({
+        title: "Ошибка входа",
+        description: "Неверный логин или пароль",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoggingIn(false);
     }
-  }, [setLocation]);
+  };
 
   const logout = () => {
     localStorage.removeItem("admin-token");
     sessionStorage.removeItem("admin-token");
+    setIsAuthenticated(false);
     toast({
       title: "Выход выполнен",
       description: "Вы вышли из админ-панели",
@@ -105,6 +153,101 @@ export default function AdminPanel() {
     
     updateLevelMutation.mutate({ levelId: editingLevelId, title: editingLevelTitle });
   };
+
+  // Show loading state while checking authentication
+  if (isAuthenticated === null) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  // Show login form if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 dark:from-amber-950 dark:to-orange-950 flex items-center justify-center p-4">
+        <Card className="w-full max-w-md">
+          <CardHeader className="text-center">
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900">
+              <Users className="h-6 w-6 text-amber-600 dark:text-amber-400" />
+            </div>
+            <CardTitle className="text-2xl font-bold">Вход в админ-панель</CardTitle>
+            <p className="text-muted-foreground">
+              Введите учетные данные для доступа к панели управления
+            </p>
+          </CardHeader>
+          <CardContent>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Логин</FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder="Введите логин" disabled={isLoggingIn} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Пароль</FormLabel>
+                      <FormControl>
+                        <Input 
+                          {...field} 
+                          type="password" 
+                          placeholder="Введите пароль" 
+                          disabled={isLoggingIn}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="rememberMe"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                          disabled={isLoggingIn}
+                        />
+                      </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <FormLabel className="text-sm font-normal">
+                          Запомнить меня
+                        </FormLabel>
+                      </div>
+                    </FormItem>
+                  )}
+                />
+                
+                <Button 
+                  type="submit" 
+                  className="w-full bg-amber-600 hover:bg-amber-700"
+                  disabled={isLoggingIn}
+                >
+                  {isLoggingIn ? "Вход..." : "Войти"}
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
