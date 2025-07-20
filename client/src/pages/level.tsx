@@ -96,22 +96,30 @@ export default function LevelPage() {
           {currentLevel.sections.map((sectionId, sectionIndex) => (
             <Card key={sectionId} className="hover:shadow-lg transition-shadow">
               <CardHeader className="pb-4">
-                <CardTitle className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <BookOpen className="h-5 w-5 text-primary" />
-                    <a 
-                      href={`/section/${levelId}/${sectionId}`}
-                      className="text-lg font-bold text-blue-600 hover:text-blue-800 hover:underline cursor-pointer"
-                      onClick={(e) => {
-                        console.log('Клик по ссылке:', `/section/${levelId}/${sectionId}`);
-                        e.preventDefault();
-                        setLocation(`/section/${levelId}/${sectionId}`);
-                      }}
-                    >
-                      🔗 Раздел {sectionIndex + 1}
-                    </a>
+                <CardTitle>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      <a 
+                        href={`/section/${levelId}/${sectionId}`}
+                        style={{ 
+                          color: 'blue', 
+                          fontSize: '18px', 
+                          fontWeight: 'bold',
+                          textDecoration: 'underline',
+                          cursor: 'pointer'
+                        }}
+                        onClick={(e) => {
+                          console.log('КЛИК ПО ССЫЛКЕ РАБОТАЕТ!', `/section/${levelId}/${sectionId}`);
+                          e.preventDefault();
+                          setLocation(`/section/${levelId}/${sectionId}`);
+                        }}
+                      >
+                        🔗 РАЗДЕЛ {sectionIndex + 1} (КЛИКНИ МЕНЯ)
+                      </a>
+                    </div>
+                    <ChevronRight className="h-5 w-5 text-muted-foreground" />
                   </div>
-                  <ChevronRight className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
                 </CardTitle>
               </CardHeader>
               <CardContent>
