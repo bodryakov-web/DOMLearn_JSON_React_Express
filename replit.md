@@ -4,6 +4,15 @@
 
 This is a full-stack JavaScript learning platform designed to help students learn JavaScript through structured lessons, tests, and tasks. The application follows a clean architecture with a React frontend and Express backend, using PostgreSQL for data persistence through Drizzle ORM.
 
+## Recent Changes
+
+**January 2025:**
+- Fixed section navigation links on the home page - "Раздел 1", "Раздел 2" links in level cards now properly navigate to section pages
+- Implemented working mobile navigation with hamburger menu containing 4 level links
+- Created functional level overview pages with section navigation
+- Admin panel successfully moved from /admin to /bod route
+- All navigation between levels, sections, and lessons is now functional
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
