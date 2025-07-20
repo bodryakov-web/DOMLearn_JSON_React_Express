@@ -148,7 +148,10 @@ export default function AdminPanel() {
                     <Card key={level.id}>
                       <CardHeader>
                         <CardTitle className="flex items-center justify-between">
-                          <div className="flex items-center">
+                          <div 
+                            className="flex items-center cursor-pointer hover:text-primary transition-colors"
+                            onClick={() => handleEditLesson(level.id, level.sections[0], "lesson1")}
+                          >
                             <BookOpen className="h-5 w-5 mr-2" />
                             {level.title}
                           </div>
@@ -166,13 +169,21 @@ export default function AdminPanel() {
                         <p className="text-muted-foreground mb-4">{level.description}</p>
                         <div className="grid gap-2 md:grid-cols-2">
                           {level.sections.map((sectionId, index) => (
-                            <div key={sectionId} className="p-3 border border-border rounded">
-                              <h4 className="font-medium flex items-center justify-between">
-                                Раздел {index + 1}
+                            <div key={sectionId} className="p-3 border border-border rounded hover:bg-accent/50 transition-colors">
+                              <h4 
+                                className="font-medium flex items-center justify-between cursor-pointer"
+                                onClick={() => handleEditLesson(level.id, sectionId, "lesson1")}
+                              >
+                                <span className="hover:text-primary transition-colors">
+                                  Раздел {index + 1}
+                                </span>
                                 <Button 
                                   variant="ghost" 
                                   size="sm"
-                                  onClick={() => handleEditLesson(level.id, sectionId, "lesson1")}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleEditLesson(level.id, sectionId, "lesson1");
+                                  }}
                                 >
                                   <Edit className="h-3 w-3" />
                                 </Button>
