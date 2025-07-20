@@ -101,14 +101,17 @@ export default function LevelPage() {
                     <BookOpen className="h-5 w-5 text-primary" />
                     <a 
                       href={`/section/${levelId}/${sectionId}`}
-                      className="text-foreground hover:text-primary transition-colors hover:underline"
+                      className="text-lg font-bold text-blue-600 hover:text-blue-800 hover:underline cursor-pointer"
+                      onClick={(e) => {
+                        console.log('Клик по ссылке:', `/section/${levelId}/${sectionId}`);
+                        e.preventDefault();
+                        setLocation(`/section/${levelId}/${sectionId}`);
+                      }}
                     >
-                      Раздел {sectionIndex + 1}
+                      🔗 Раздел {sectionIndex + 1}
                     </a>
                   </div>
-                  <a href={`/section/${levelId}/${sectionId}`}>
-                    <ChevronRight className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
-                  </a>
+                  <ChevronRight className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
                 </CardTitle>
               </CardHeader>
               <CardContent>
