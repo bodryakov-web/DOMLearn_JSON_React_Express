@@ -1,0 +1,35 @@
+{
+  "id": "lesson2",
+  "title": "Области видимости",
+  "description": "Понимание локальной и глобальной области видимости",
+  "content": "<h3>Глобальная область видимости</h3><p>Переменные, объявленные вне функций, имеют глобальную область видимости:</p><div class=\"code-block\"><span class=\"syntax-keyword\">let</span> globalVar = <span class=\"syntax-string\">\"Я глобальная\"</span>;<br><br><span class=\"syntax-keyword\">function</span> showGlobal() {<br>&nbsp;&nbsp;console.log(globalVar); <span class=\"syntax-comment\">// Доступна внутри функции</span><br>}</div><h3>Локальная область видимости</h3><p>Переменные внутри функций имеют локальную область видимости:</p><div class=\"code-block\"><span class=\"syntax-keyword\">function</span> myFunction() {<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">let</span> localVar = <span class=\"syntax-string\">\"Я локальная\"</span>;<br>&nbsp;&nbsp;console.log(localVar);<br>}<br><br><span class=\"syntax-comment\">// console.log(localVar); // Ошибка! Переменная недоступна</span></div><h3>Блочная область видимости</h3><div class=\"code-block\"><span class=\"syntax-keyword\">if</span> (<span class=\"syntax-keyword\">true</span>) {<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">let</span> blockVar = <span class=\"syntax-string\">\"Я в блоке\"</span>;<br>}<br><span class=\"syntax-comment\">// console.log(blockVar); // Ошибка!</span></div>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "Где доступна глобальная переменная?",
+      "options": ["Только вне функций", "Везде в программе", "Только в первой функции", "Нигде"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q2",
+      "question": "Что произойдет при попытке использовать локальную переменную вне функции?",
+      "options": ["Вернет undefined", "Вернет null", "Произойдет ошибка", "Создастся глобальная переменная"],
+      "correctAnswer": 2
+    },
+    {
+      "id": "q3",
+      "question": "Какое ключевое слово создает блочную область видимости?",
+      "options": ["var", "let", "global", "block"],
+      "correctAnswer": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Области видимости",
+      "description": "Создайте примеры глобальных и локальных переменных.",
+      "codeExample": "// Ваш код здесь"
+    }
+  ],
+  "order": 2
+}

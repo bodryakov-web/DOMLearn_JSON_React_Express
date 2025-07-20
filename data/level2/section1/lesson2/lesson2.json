@@ -1,0 +1,35 @@
+{
+  "id": "lesson2",
+  "title": "Методы массивов",
+  "description": "Углубленное изучение методов для работы с массивами",
+  "content": "<h3>Методы изменения массива</h3><div class=\"code-block\"><span class=\"syntax-keyword\">let</span> arr = [<span class=\"syntax-number\">1</span>, <span class=\"syntax-number\">2</span>, <span class=\"syntax-number\">3</span>];<br><br>arr.push(<span class=\"syntax-number\">4</span>); <span class=\"syntax-comment\">// [1, 2, 3, 4]</span><br>arr.pop(); <span class=\"syntax-comment\">// [1, 2, 3]</span><br>arr.unshift(<span class=\"syntax-number\">0</span>); <span class=\"syntax-comment\">// [0, 1, 2, 3]</span><br>arr.shift(); <span class=\"syntax-comment\">// [1, 2, 3]</span></div><h3>Поиск в массиве</h3><div class=\"code-block\"><span class=\"syntax-keyword\">let</span> fruits = [<span class=\"syntax-string\">\"яблоко\"</span>, <span class=\"syntax-string\">\"банан\"</span>, <span class=\"syntax-string\">\"апельсин\"</span>];<br><br>console.log(fruits.indexOf(<span class=\"syntax-string\">\"банан\"</span>)); <span class=\"syntax-comment\">// 1</span><br>console.log(fruits.includes(<span class=\"syntax-string\">\"яблоко\"</span>)); <span class=\"syntax-comment\">// true</span></div>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "Что делает метод unshift()?",
+      "options": ["Удаляет первый элемент", "Добавляет элемент в начало", "Удаляет последний элемент", "Сортирует массив"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q2",
+      "question": "Какой метод проверяет наличие элемента в массиве?",
+      "options": ["contains()", "includes()", "has()", "find()"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q3",
+      "question": "Что возвращает indexOf() если элемент не найден?",
+      "options": ["null", "undefined", "-1", "false"],
+      "correctAnswer": 2
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Работа с методами",
+      "description": "Создайте массив чисел и используйте различные методы для его изменения.",
+      "codeExample": "let numbers = [1, 2, 3];\n// Добавьте методы здесь"
+    }
+  ],
+  "order": 2
+}

@@ -1,0 +1,47 @@
+{
+  "id": "lesson2",
+  "title": "Модули в JavaScript",
+  "description": "Изучаем модульную систему ES6 и организацию кода",
+  "content": "<h3>Что такое модули?</h3><p>Модули позволяют разделить код на отдельные файлы и импортировать функциональность между ними. Это помогает организовать код и избежать загрязнения глобального пространства имен.</p><h3>Экспорт из модуля</h3><div class=\"code-block\"><span class=\"syntax-comment\">// math.js</span><br><span class=\"syntax-keyword\">export</span> <span class=\"syntax-keyword\">function</span> add(a, b) {<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">return</span> a + b;<br>}<br><br><span class=\"syntax-keyword\">export</span> <span class=\"syntax-keyword\">function</span> multiply(a, b) {<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">return</span> a * b;<br>}<br><br><span class=\"syntax-comment\">// Экспорт по умолчанию</span><br><span class=\"syntax-keyword\">export</span> <span class=\"syntax-keyword\">default</span> <span class=\"syntax-keyword\">function</span> subtract(a, b) {<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">return</span> a - b;<br>}</div><h3>Импорт в модуль</h3><div class=\"code-block\"><span class=\"syntax-comment\">// main.js</span><br><span class=\"syntax-keyword\">import</span> subtract, { add, multiply } <span class=\"syntax-keyword\">from</span> <span class=\"syntax-string\">'./math.js'</span>;<br><br>console.log(add(<span class=\"syntax-number\">5</span>, <span class=\"syntax-number\">3</span>)); <span class=\"syntax-comment\">// 8</span><br>console.log(multiply(<span class=\"syntax-number\">4</span>, <span class=\"syntax-number\">2</span>)); <span class=\"syntax-comment\">// 8</span><br>console.log(subtract(<span class=\"syntax-number\">10</span>, <span class=\"syntax-number\">3</span>)); <span class=\"syntax-comment\">// 7</span></div><h3>Импорт всех экспортов</h3><div class=\"code-block\"><span class=\"syntax-keyword\">import</span> * <span class=\"syntax-keyword\">as</span> MathUtils <span class=\"syntax-keyword\">from</span> <span class=\"syntax-string\">'./math.js'</span>;<br><br>console.log(MathUtils.add(<span class=\"syntax-number\">1</span>, <span class=\"syntax-number\">2</span>)); <span class=\"syntax-comment\">// 3</span><br>console.log(MathUtils.<span class=\"syntax-keyword\">default</span>(<span class=\"syntax-number\">5</span>, <span class=\"syntax-number\">2</span>)); <span class=\"syntax-comment\">// 3</span></div><h3>Динамический импорт</h3><div class=\"code-block\"><span class=\"syntax-keyword\">async</span> <span class=\"syntax-keyword\">function</span> loadModule() {<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">const</span> module = <span class=\"syntax-keyword\">await</span> <span class=\"syntax-keyword\">import</span>(<span class=\"syntax-string\">'./math.js'</span>);<br>&nbsp;&nbsp;console.log(module.add(<span class=\"syntax-number\">1</span>, <span class=\"syntax-number\">1</span>)); <span class=\"syntax-comment\">// 2</span><br>}</div>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "Какое ключевое слово используется для экспорта функции из модуля?",
+      "options": ["import", "export", "module", "function"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q2",
+      "question": "Сколько экспортов по умолчанию может быть в одном модуле?",
+      "options": ["Неограниченно", "Только один", "Максимум три", "Только четные числа"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q3",
+      "question": "Как импортировать все экспорты из модуля?",
+      "options": ["import all from 'module'", "import * as name from 'module'", "import everything from 'module'", "import {*} from 'module'"],
+      "correctAnswer": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Создание модуля",
+      "description": "Создайте модуль с функциями для работы со строками: capitalize (делает первую букву заглавной) и reverse (переворачивает строку).",
+      "codeExample": "// stringUtils.js\n// Ваш код здесь\n\n// main.js\n// Импортируйте и используйте функции"
+    },
+    {
+      "id": "task2",
+      "title": "Экспорт по умолчанию",
+      "description": "Создайте модуль с классом Calculator, который экспортируется по умолчанию, и несколько вспомогательных функций.",
+      "codeExample": "// calculator.js\nclass Calculator {\n  // Ваш код здесь\n}\n\n// Экспортируйте класс по умолчанию и дополнительные функции"
+    },
+    {
+      "id": "task3",
+      "title": "Динамический импорт",
+      "description": "Используйте динамический импорт для загрузки модуля только при необходимости.",
+      "codeExample": "// Ваш код с динамическим импортом\nasync function conditionalImport(condition) {\n  if (condition) {\n    // Динамически импортируйте модуль\n  }\n}"
+    }
+  ],
+  "order": 2
+}

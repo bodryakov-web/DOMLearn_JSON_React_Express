@@ -1,0 +1,35 @@
+{
+  "id": "lesson2",
+  "title": "Методы объектов",
+  "description": "Изучаем методы и функции в объектах",
+  "content": "<h3>Методы объектов</h3><p>Объекты могут содержать не только данные, но и функции, которые называются методами:</p><div class=\"code-block\"><span class=\"syntax-keyword\">let</span> calculator = {<br>&nbsp;&nbsp;a: <span class=\"syntax-number\">10</span>,<br>&nbsp;&nbsp;b: <span class=\"syntax-number\">5</span>,<br>&nbsp;&nbsp;sum: <span class=\"syntax-keyword\">function</span>() {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"syntax-keyword\">return</span> <span class=\"syntax-keyword\">this</span>.a + <span class=\"syntax-keyword\">this</span>.b;<br>&nbsp;&nbsp;}<br>};<br><br>console.log(calculator.sum()); <span class=\"syntax-comment\">// 15</span></div><h3>Ключевое слово this</h3><p>Внутри методов объекта <code>this</code> ссылается на сам объект:</p><div class=\"code-block\"><span class=\"syntax-keyword\">let</span> user = {<br>&nbsp;&nbsp;name: <span class=\"syntax-string\">\"Анна\"</span>,<br>&nbsp;&nbsp;greet: <span class=\"syntax-keyword\">function</span>() {<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class=\"syntax-string\">\"Привет, я \"</span> + <span class=\"syntax-keyword\">this</span>.name);<br>&nbsp;&nbsp;}<br>};</div>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "Что такое метод объекта?",
+      "options": ["Свойство объекта", "Функция внутри объекта", "Переменная объекта", "Конструктор объекта"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q2",
+      "question": "На что ссылается this внутри метода объекта?",
+      "options": ["На глобальный объект", "На функцию", "На сам объект", "На undefined"],
+      "correctAnswer": 2
+    },
+    {
+      "id": "q3",
+      "question": "Как вызвать метод greet объекта user?",
+      "options": ["greet(user)", "user->greet()", "user.greet()", "user::greet()"],
+      "correctAnswer": 2
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Объект с методами",
+      "description": "Создайте объект 'автомобиль' с методами для запуска и остановки двигателя.",
+      "codeExample": "// Ваш код здесь"
+    }
+  ],
+  "order": 2
+}

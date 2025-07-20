@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(220, 14.3%, 4.1%);
+  --muted: hsl(220, 4.8%, 95.9%);
+  --muted-foreground: hsl(220, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(220, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(220, 14.3%, 4.1%);
+  --border: hsl(220, 5.9%, 90%);
+  --input: hsl(220, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(220, 4.8%, 95.9%);
+  --secondary-foreground: hsl(220, 9.8%, 10%);
+  --accent: hsl(220, 4.8%, 95.9%);
+  --accent-foreground: hsl(220, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(220, 14.3%, 4.1%);
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: hsl(220, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(220, 3.7%, 15.9%);
+  --muted-foreground: hsl(220, 5%, 64.9%);
+  --popover: hsl(220, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(220, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(220, 3.7%, 15.9%);
+  --input: hsl(220, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(220, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(220, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(220, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+  
+  .code-block {
+    background: hsl(220, 4.8%, 95.9%);
+    border: 1px solid hsl(220, 5.9%, 90%);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    font-family: 'Courier New', monospace;
+    color: hsl(220, 14.3%, 4.1%);
+    overflow-x: auto;
+  }
+  
+  .dark .code-block {
+    background: hsl(220, 3.7%, 15.9%);
+    border-color: hsl(220, 3.7%, 25.9%);
+    color: hsl(0, 0%, 98%);
+  }
+  
+  .syntax-keyword { 
+    color: hsl(271, 81%, 56%); 
+    font-weight: 600;
+  }
+  
+  .syntax-string { 
+    color: hsl(142, 71%, 45%); 
+  }
+  
+  .syntax-number { 
+    color: hsl(43, 96%, 56%); 
+  }
+  
+  .syntax-comment { 
+    color: hsl(220, 5.3%, 44.7%); 
+    font-style: italic; 
+  }
+  
+  .progress-bar {
+    background: linear-gradient(90deg, hsl(207, 90%, 54%) var(--progress, 0%), hsl(220, 5.9%, 90%) var(--progress, 0%));
+  }
+  
+  .dark .progress-bar {
+    background: linear-gradient(90deg, hsl(207, 90%, 54%) var(--progress, 0%), hsl(220, 3.7%, 25.9%) var(--progress, 0%));
+  }
+  
+  .lesson-card:hover {
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+  }
+  
+  .admin-mode {
+    border: 2px dashed hsl(43, 96%, 56%);
+    position: relative;
+  }
+  
+  .admin-mode::before {
+    content: "РЕЖИМ РЕДАКТИРОВАНИЯ";
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background: hsl(43, 96%, 56%);
+    color: white;
+    padding: 2px 8px;
+    font-size: 10px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  
+  .rich-editor {
+    min-height: 200px;
+    border: 1px solid hsl(220, 5.9%, 90%);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    outline: none;
+  }
+  
+  .dark .rich-editor {
+    border-color: hsl(220, 3.7%, 25.9%);
+  }
+  
+  .rich-editor:focus {
+    border-color: hsl(207, 90%, 54%);
+    box-shadow: 0 0 0 2px hsla(207, 90%, 54%, 0.2);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+}

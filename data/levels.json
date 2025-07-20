@@ -1,0 +1,32 @@
+{
+  "levels": [
+    {
+      "id": "level1",
+      "title": "Уровень 1: Основы",
+      "description": "Изучение основ JavaScript",
+      "sections": ["section1", "section2"],
+      "order": 1
+    },
+    {
+      "id": "level2",
+      "title": "Уровень 2: Структуры данных",
+      "description": "Массивы, объекты и структуры данных",
+      "sections": ["section1", "section2"],
+      "order": 2
+    },
+    {
+      "id": "level3",
+      "title": "Уровень 3: Функции",
+      "description": "Функции, замыкания и области видимости",
+      "sections": ["section1", "section2"],
+      "order": 3
+    },
+    {
+      "id": "level4",
+      "title": "Уровень 4: Продвинутые темы",
+      "description": "Асинхронность, модули и современный JavaScript",
+      "sections": ["section1", "section2"],
+      "order": 4
+    }
+  ]
+}

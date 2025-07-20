@@ -1,0 +1,35 @@
+{
+  "id": "lesson1",
+  "title": "Асинхронность в JavaScript",
+  "description": "Введение в асинхронное программирование",
+  "content": "<h3>Что такое асинхронность?</h3><p>Асинхронность позволяет выполнять код, не блокируя основной поток выполнения. Это особенно важно для операций, которые могут занимать время.</p><h3>setTimeout и setInterval</h3><div class=\"code-block\"><span class=\"syntax-comment\">// Выполнить через 2 секунды</span><br>setTimeout(() => {<br>&nbsp;&nbsp;console.log(<span class=\"syntax-string\">\"Прошло 2 секунды\"</span>);<br>}, <span class=\"syntax-number\">2000</span>);<br><br><span class=\"syntax-comment\">// Выполнять каждую секунду</span><br><span class=\"syntax-keyword\">const</span> intervalId = setInterval(() => {<br>&nbsp;&nbsp;console.log(<span class=\"syntax-string\">\"Тик\"</span>);<br>}, <span class=\"syntax-number\">1000</span>);</div><h3>Коллбэки</h3><div class=\"code-block\"><span class=\"syntax-keyword\">function</span> processData(data, callback) {<br>&nbsp;&nbsp;setTimeout(() => {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"syntax-keyword\">const</span> result = data.toUpperCase();<br>&nbsp;&nbsp;&nbsp;&nbsp;callback(result);<br>&nbsp;&nbsp;}, <span class=\"syntax-number\">1000</span>);<br>}<br><br>processData(<span class=\"syntax-string\">\"hello\"</span>, (result) => {<br>&nbsp;&nbsp;console.log(result); <span class=\"syntax-comment\">// \"HELLO\"</span><br>});</div>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "Что такое коллбэк?",
+      "options": ["Тип переменной", "Функция, передаваемая в качестве аргумента", "Метод объекта", "Оператор цикла"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q2",
+      "question": "Через сколько миллисекунд выполнится setTimeout(func, 3000)?",
+      "options": ["3 секунды", "3000 секунд", "3 миллисекунды", "30 секунд"],
+      "correctAnswer": 0
+    },
+    {
+      "id": "q3",
+      "question": "Какая функция выполняется многократно через заданные интервалы?",
+      "options": ["setTimeout", "setInterval", "setImmediate", "requestTimeout"],
+      "correctAnswer": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Таймер",
+      "description": "Создайте простой таймер, который выводит числа от 1 до 5 с интервалом в 1 секунду.",
+      "codeExample": "// Ваш код здесь"
+    }
+  ],
+  "order": 1
+}

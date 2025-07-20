@@ -1,0 +1,35 @@
+{
+  "id": "lesson1",
+  "title": "Объекты в JavaScript",
+  "description": "Изучаем основы работы с объектами",
+  "content": "<h3>Что такое объект?</h3><p>Объект — это структура данных, которая позволяет хранить связанные данные и функциональность вместе.</p><div class=\"code-block\"><span class=\"syntax-keyword\">let</span> person = {<br>&nbsp;&nbsp;name: <span class=\"syntax-string\">\"Иван\"</span>,<br>&nbsp;&nbsp;age: <span class=\"syntax-number\">25</span>,<br>&nbsp;&nbsp;city: <span class=\"syntax-string\">\"Москва\"</span><br>};</div><h3>Доступ к свойствам</h3><div class=\"code-block\">console.log(person.name); <span class=\"syntax-comment\">// \"Иван\"</span><br>console.log(person[<span class=\"syntax-string\">\"age\"</span>]); <span class=\"syntax-comment\">// 25</span></div><h3>Изменение свойств</h3><div class=\"code-block\">person.age = <span class=\"syntax-number\">26</span>;<br>person.email = <span class=\"syntax-string\">\"ivan@example.com\"</span>;</div>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "Как получить значение свойства name объекта obj?",
+      "options": ["obj->name", "obj.name", "obj::name", "obj[name]"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q2",
+      "question": "Можно ли добавить новое свойство к существующему объекту?",
+      "options": ["Нет", "Да", "Только при создании", "Только через функцию"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q3",
+      "question": "Какой синтаксис используется для доступа к свойству с пробелом в имени?",
+      "options": ["obj.\"property name\"", "obj[\"property name\"]", "obj.'property name'", "obj.property name"],
+      "correctAnswer": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Создание объекта",
+      "description": "Создайте объект, описывающий книгу с свойствами: название, автор, год издания.",
+      "codeExample": "// Ваш код здесь"
+    }
+  ],
+  "order": 1
+}

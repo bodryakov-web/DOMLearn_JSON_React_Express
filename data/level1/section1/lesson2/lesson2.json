@@ -1,0 +1,47 @@
+{
+  "id": "lesson2",
+  "title": "Переменные и типы данных",
+  "description": "Изучаем основы работы с переменными в JavaScript и различные типы данных",
+  "content": "<h3>Что такое переменные?</h3><p>Переменные в JavaScript — это контейнеры для хранения данных. Они позволяют нам давать имена значениям и использовать эти имена для обращения к данным в коде.</p><h3>Объявление переменных</h3><p>В современном JavaScript есть три способа объявления переменных:</p><div class=\"code-block\"><span class=\"syntax-keyword\">let</span> name = <span class=\"syntax-string\">\"Иван\"</span>; <span class=\"syntax-comment\">// Блочная область видимости</span><br><span class=\"syntax-keyword\">const</span> age = <span class=\"syntax-number\">25</span>; <span class=\"syntax-comment\">// Константа</span><br><span class=\"syntax-keyword\">var</span> city = <span class=\"syntax-string\">\"Москва\"</span>; <span class=\"syntax-comment\">// Функциональная область видимости (устаревший способ)</span></div><h3>Типы данных</h3><ul><li><strong>String (строка)</strong> — текстовые данные</li><li><strong>Number (число)</strong> — числовые значения</li><li><strong>Boolean (логический)</strong> — true или false</li><li><strong>Undefined</strong> — неопределенное значение</li><li><strong>Null</strong> — отсутствие значения</li></ul><div class=\"code-block\"><span class=\"syntax-keyword\">let</span> message = <span class=\"syntax-string\">\"Привет!\"</span>; <span class=\"syntax-comment\">// строка</span><br><span class=\"syntax-keyword\">let</span> count = <span class=\"syntax-number\">42</span>; <span class=\"syntax-comment\">// число</span><br><span class=\"syntax-keyword\">let</span> isActive = <span class=\"syntax-keyword\">true</span>; <span class=\"syntax-comment\">// логический тип</span></div>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "Какой оператор используется для объявления константы?",
+      "options": ["var", "let", "const", "final"],
+      "correctAnswer": 2
+    },
+    {
+      "id": "q2",
+      "question": "Какой тип данных имеет значение \"Hello World\"?",
+      "options": ["String", "Number", "Boolean", "Object"],
+      "correctAnswer": 0
+    },
+    {
+      "id": "q3",
+      "question": "Чем отличается let от var?",
+      "options": ["Ничем не отличается", "let имеет блочную область видимости, var — функциональную", "var работает быстрее", "let можно переопределить"],
+      "correctAnswer": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Объявление переменных",
+      "description": "Создайте переменную с именем <code>userName</code> и присвойте ей ваше имя. Выведите значение в консоль.",
+      "codeExample": "// Ваш код здесь\nlet userName = \"...\";\nconsole.log(userName);"
+    },
+    {
+      "id": "task2",
+      "title": "Работа с типами данных",
+      "description": "Объявите три переменные: <code>firstName</code>, <code>lastName</code> и <code>age</code>. Создайте четвертую переменную <code>fullInfo</code>, которая содержит полную информацию о человеке.",
+      "codeExample": "// Ваш код здесь"
+    },
+    {
+      "id": "task3",
+      "title": "Определение типов",
+      "description": "Определите тип данных для каждого из следующих значений: <code>42</code>, <code>\"JavaScript\"</code>, <code>true</code>, <code>null</code>.",
+      "codeExample": "// Используйте typeof для проверки типов\nconsole.log(typeof 42);"
+    }
+  ],
+  "order": 2
+}

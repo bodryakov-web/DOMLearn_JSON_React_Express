@@ -1,0 +1,35 @@
+{
+  "id": "lesson2",
+  "title": "Условные конструкции",
+  "description": "Изучаем условные операторы if, else и switch",
+  "content": "<h3>Оператор if</h3><p>Оператор if позволяет выполнять код только при выполнении определенного условия:</p><div class=\"code-block\"><span class=\"syntax-keyword\">let</span> age = <span class=\"syntax-number\">18</span>;<br><br><span class=\"syntax-keyword\">if</span> (age >= <span class=\"syntax-number\">18</span>) {<br>&nbsp;&nbsp;console.log(<span class=\"syntax-string\">\"Вы совершеннолетний\"</span>);<br>}</div><h3>Оператор if...else</h3><p>Добавляем альтернативный сценарий:</p><div class=\"code-block\"><span class=\"syntax-keyword\">if</span> (age >= <span class=\"syntax-number\">18</span>) {<br>&nbsp;&nbsp;console.log(<span class=\"syntax-string\">\"Вы совершеннолетний\"</span>);<br>} <span class=\"syntax-keyword\">else</span> {<br>&nbsp;&nbsp;console.log(<span class=\"syntax-string\">\"Вы несовершеннолетний\"</span>);<br>}</div><h3>Множественные условия</h3><div class=\"code-block\"><span class=\"syntax-keyword\">let</span> score = <span class=\"syntax-number\">85</span>;<br><br><span class=\"syntax-keyword\">if</span> (score >= <span class=\"syntax-number\">90</span>) {<br>&nbsp;&nbsp;console.log(<span class=\"syntax-string\">\"Отлично!\"</span>);<br>} <span class=\"syntax-keyword\">else if</span> (score >= <span class=\"syntax-number\">70</span>) {<br>&nbsp;&nbsp;console.log(<span class=\"syntax-string\">\"Хорошо!\"</span>);<br>} <span class=\"syntax-keyword\">else</span> {<br>&nbsp;&nbsp;console.log(<span class=\"syntax-string\">\"Нужно подучить\"</span>);<br>}</div>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "Что выведет код: if (0) { console.log('A'); } else { console.log('B'); }",
+      "options": ["A", "B", "Ошибка", "Ничего"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q2",
+      "question": "Какое значение считается ложным (falsy) в JavaScript?",
+      "options": ["1", "\"0\"", "0", "\"false\""],
+      "correctAnswer": 2
+    },
+    {
+      "id": "q3",
+      "question": "Для чего используется оператор else if?",
+      "options": ["Для множественных условий", "Для циклов", "Для функций", "Для объявления переменных"],
+      "correctAnswer": 0
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Проверка возраста",
+      "description": "Напишите код, который проверяет возраст и выводит соответствующее сообщение.",
+      "codeExample": "let age = 20;\n// Ваш код здесь"
+    }
+  ],
+  "order": 2
+}

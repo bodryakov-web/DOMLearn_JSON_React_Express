@@ -1,0 +1,35 @@
+{
+  "id": "lesson1",
+  "title": "Стрелочные функции",
+  "description": "Современный синтаксис функций в JavaScript",
+  "content": "<h3>Синтаксис стрелочных функций</h3><p>ES6 представил более краткий способ записи функций:</p><div class=\"code-block\"><span class=\"syntax-comment\">// Обычная функция</span><br><span class=\"syntax-keyword\">function</span> add(a, b) {<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">return</span> a + b;<br>}<br><br><span class=\"syntax-comment\">// Стрелочная функция</span><br><span class=\"syntax-keyword\">const</span> add = (a, b) => a + b;</div><h3>Различные формы записи</h3><div class=\"code-block\"><span class=\"syntax-comment\">// Один параметр</span><br><span class=\"syntax-keyword\">const</span> square = x => x * x;<br><br><span class=\"syntax-comment\">// Несколько строк</span><br><span class=\"syntax-keyword\">const</span> processData = (data) => {<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">const</span> processed = data * <span class=\"syntax-number\">2</span>;<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">return</span> processed + <span class=\"syntax-number\">1</span>;<br>};</div>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "Как записать стрелочную функцию с одним параметром?",
+      "options": ["x => x * 2", "(x) => x * 2", "x -> x * 2", "function x => x * 2"],
+      "correctAnswer": 0
+    },
+    {
+      "id": "q2",
+      "question": "Нужен ли return в однострочной стрелочной функции?",
+      "options": ["Да, всегда", "Нет, он неявный", "Только для чисел", "Только для строк"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q3",
+      "question": "В каком стандарте появились стрелочные функции?",
+      "options": ["ES5", "ES6", "ES7", "ES8"],
+      "correctAnswer": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Конвертация функций",
+      "description": "Перепишите обычную функцию в виде стрелочной.",
+      "codeExample": "function multiply(a, b) {\n  return a * b;\n}\n\n// Перепишите стрелочной функцией"
+    }
+  ],
+  "order": 1
+}

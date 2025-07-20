@@ -1,0 +1,41 @@
+{
+  "id": "lesson1",
+  "title": "Введение в JavaScript",
+  "description": "Знакомство с языком программирования JavaScript",
+  "content": "<h3>Что такое JavaScript?</h3><p>JavaScript — это язык программирования, который изначально был создан для добавления интерактивности веб-страницам. Сегодня JavaScript используется повсеместно: от создания веб-приложений до серверной разработки.</p><h3>История JavaScript</h3><p>JavaScript был создан Бренданом Эйхом в 1995 году всего за 10 дней. Несмотря на свое название, JavaScript не имеет отношения к языку Java.</p><h3>Где используется JavaScript?</h3><ul><li>Веб-браузеры (фронтенд)</li><li>Серверы (Node.js)</li><li>Мобильные приложения</li><li>Десктопные приложения</li></ul><div class=\"code-block\"><span class=\"syntax-comment\">// Ваш первый код на JavaScript</span><br>console.log(<span class=\"syntax-string\">\"Привет, мир!\"</span>);</div>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "В каком году был создан JavaScript?",
+      "options": ["1993", "1995", "1997", "1999"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q2",
+      "question": "Кто создал JavaScript?",
+      "options": ["Тим Бернерс-Ли", "Джон Резиг", "Брендан Эйх", "Дуглас Крокфорд"],
+      "correctAnswer": 2
+    },
+    {
+      "id": "q3",
+      "question": "JavaScript связан с языком Java?",
+      "options": ["Да, это одна семья языков", "Нет, это разные языки", "Частично связан", "JavaScript основан на Java"],
+      "correctAnswer": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Первая программа",
+      "description": "Напишите код, который выводит в консоль ваше имя.",
+      "codeExample": "// Ваш код здесь\nconsole.log(\"Ваше имя\");"
+    },
+    {
+      "id": "task2",
+      "title": "Комментарии",
+      "description": "Добавьте комментарии к следующему коду, объясняющие что он делает.",
+      "codeExample": "console.log(\"Hello, World!\");\nalert(\"Добро пожаловать!\");"
+    }
+  ],
+  "order": 1
+}

@@ -1,0 +1,35 @@
+{
+  "id": "lesson1",
+  "title": "Массивы в JavaScript",
+  "description": "Изучаем основы работы с массивами",
+  "content": "<h3>Что такое массив?</h3><p>Массив — это упорядоченная коллекция элементов, которая может содержать данные различных типов.</p><div class=\"code-block\"><span class=\"syntax-keyword\">let</span> fruits = [<span class=\"syntax-string\">\"яблоко\"</span>, <span class=\"syntax-string\">\"банан\"</span>, <span class=\"syntax-string\">\"апельсин\"</span>];<br><span class=\"syntax-keyword\">let</span> numbers = [<span class=\"syntax-number\">1</span>, <span class=\"syntax-number\">2</span>, <span class=\"syntax-number\">3</span>, <span class=\"syntax-number\">4</span>, <span class=\"syntax-number\">5</span>];</div><h3>Доступ к элементам</h3><p>Элементы массива нумеруются, начиная с 0:</p><div class=\"code-block\">console.log(fruits[<span class=\"syntax-number\">0</span>]); <span class=\"syntax-comment\">// \"яблоко\"</span><br>console.log(fruits[<span class=\"syntax-number\">1</span>]); <span class=\"syntax-comment\">// \"банан\"</span></div><h3>Основные методы массивов</h3><ul><li><code>push()</code> — добавляет элемент в конец</li><li><code>pop()</code> — удаляет последний элемент</li><li><code>length</code> — свойство длины массива</li></ul>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "Как получить первый элемент массива arr?",
+      "options": ["arr[1]", "arr[0]", "arr.first()", "arr.get(0)"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q2",
+      "question": "Что делает метод push()?",
+      "options": ["Удаляет элемент", "Добавляет элемент в начало", "Добавляет элемент в конец", "Сортирует массив"],
+      "correctAnswer": 2
+    },
+    {
+      "id": "q3",
+      "question": "Как узнать количество элементов в массиве?",
+      "options": ["arr.size", "arr.count", "arr.length", "arr.size()"],
+      "correctAnswer": 2
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Создание массива",
+      "description": "Создайте массив с вашими любимыми цветами и выведите второй элемент.",
+      "codeExample": "// Ваш код здесь"
+    }
+  ],
+  "order": 1
+}

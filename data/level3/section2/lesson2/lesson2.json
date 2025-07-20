@@ -1,0 +1,35 @@
+{
+  "id": "lesson2",
+  "title": "Замыкания",
+  "description": "Понятие замыканий и их практическое применение",
+  "content": "<h3>Что такое замыкание?</h3><p>Замыкание — это функция, которая имеет доступ к переменным из внешней области видимости даже после того, как внешняя функция завершила выполнение.</p><div class=\"code-block\"><span class=\"syntax-keyword\">function</span> outerFunction(x) {<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">return</span> <span class=\"syntax-keyword\">function</span>(y) {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"syntax-keyword\">return</span> x + y;<br>&nbsp;&nbsp;};<br>}<br><br><span class=\"syntax-keyword\">const</span> addFive = outerFunction(<span class=\"syntax-number\">5</span>);<br>console.log(addFive(<span class=\"syntax-number\">10</span>)); <span class=\"syntax-comment\">// 15</span></div><h3>Практическое применение</h3><div class=\"code-block\"><span class=\"syntax-keyword\">function</span> createCounter() {<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">let</span> count = <span class=\"syntax-number\">0</span>;<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">return</span> <span class=\"syntax-keyword\">function</span>() {<br>&nbsp;&nbsp;&nbsp;&nbsp;count++;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"syntax-keyword\">return</span> count;<br>&nbsp;&nbsp;};<br>}<br><br><span class=\"syntax-keyword\">const</span> counter = createCounter();<br>console.log(counter()); <span class=\"syntax-comment\">// 1</span><br>console.log(counter()); <span class=\"syntax-comment\">// 2</span></div>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "К чему имеет доступ замыкание?",
+      "options": ["Только к своим переменным", "К переменным внешней функции", "Ко всем глобальным переменным", "Только к параметрам"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q2",
+      "question": "Когда создается замыкание?",
+      "options": ["При объявлении функции", "При вызове функции", "При возврате функции", "При создании переменной"],
+      "correctAnswer": 2
+    },
+    {
+      "id": "q3",
+      "question": "Для чего часто используются замыкания?",
+      "options": ["Для ускорения кода", "Для создания приватных переменных", "Для обработки ошибок", "Для работы с DOM"],
+      "correctAnswer": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Создание счетчика",
+      "description": "Создайте функцию-счетчик с помощью замыканий.",
+      "codeExample": "// Ваш код здесь"
+    }
+  ],
+  "order": 2
+}

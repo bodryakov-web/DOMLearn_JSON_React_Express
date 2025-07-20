@@ -1,0 +1,35 @@
+{
+  "id": "lesson1",
+  "title": "Операторы в JavaScript",
+  "description": "Изучаем различные операторы JavaScript для работы с данными",
+  "content": "<h3>Арифметические операторы</h3><p>JavaScript предоставляет стандартные арифметические операторы для работы с числами:</p><div class=\"code-block\"><span class=\"syntax-keyword\">let</span> a = <span class=\"syntax-number\">10</span>;<br><span class=\"syntax-keyword\">let</span> b = <span class=\"syntax-number\">3</span>;<br><br>console.log(a + b); <span class=\"syntax-comment\">// 13 (сложение)</span><br>console.log(a - b); <span class=\"syntax-comment\">// 7 (вычитание)</span><br>console.log(a * b); <span class=\"syntax-comment\">// 30 (умножение)</span><br>console.log(a / b); <span class=\"syntax-comment\">// 3.33... (деление)</span><br>console.log(a % b); <span class=\"syntax-comment\">// 1 (остаток от деления)</span></div><h3>Операторы сравнения</h3><p>Операторы сравнения возвращают логическое значение (true или false):</p><div class=\"code-block\">console.log(<span class=\"syntax-number\">5</span> == <span class=\"syntax-string\">\"5\"</span>); <span class=\"syntax-comment\">// true (нестрогое сравнение)</span><br>console.log(<span class=\"syntax-number\">5</span> === <span class=\"syntax-string\">\"5\"</span>); <span class=\"syntax-comment\">// false (строгое сравнение)</span><br>console.log(<span class=\"syntax-number\">10</span> > <span class=\"syntax-number\">5</span>); <span class=\"syntax-comment\">// true</span><br>console.log(<span class=\"syntax-number\">3</span> <= <span class=\"syntax-number\">3</span>); <span class=\"syntax-comment\">// true</span></div><h3>Логические операторы</h3><ul><li><code>&&</code> — логическое И</li><li><code>||</code> — логическое ИЛИ</li><li><code>!</code> — логическое НЕ</li></ul>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "Чему равно выражение 10 % 3?",
+      "options": ["3", "1", "0", "3.33"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q2",
+      "question": "В чем разница между == и ===?",
+      "options": ["Нет разницы", "=== проверяет тип данных", "== работает быстрее", "=== устаревший оператор"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q3",
+      "question": "Чему равно выражение true && false?",
+      "options": ["true", "false", "1", "0"],
+      "correctAnswer": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Арифметические вычисления",
+      "description": "Вычислите площадь прямоугольника со сторонами 8 и 6.",
+      "codeExample": "let width = 8;\nlet height = 6;\n// Вычислите площадь"
+    }
+  ],
+  "order": 1
+}

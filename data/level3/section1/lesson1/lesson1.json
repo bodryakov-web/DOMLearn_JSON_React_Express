@@ -1,0 +1,35 @@
+{
+  "id": "lesson1",
+  "title": "Введение в функции",
+  "description": "Основы создания и использования функций в JavaScript",
+  "content": "<h3>Что такое функция?</h3><p>Функция — это блок кода, который можно вызывать многократно. Функции помогают избежать повторения кода и делают программу более структурированной.</p><div class=\"code-block\"><span class=\"syntax-keyword\">function</span> sayHello() {<br>&nbsp;&nbsp;console.log(<span class=\"syntax-string\">\"Привет!\"</span>);<br>}<br><br>sayHello(); <span class=\"syntax-comment\">// Вызов функции</span></div><h3>Функции с параметрами</h3><div class=\"code-block\"><span class=\"syntax-keyword\">function</span> greet(name) {<br>&nbsp;&nbsp;console.log(<span class=\"syntax-string\">\"Привет, \"</span> + name + <span class=\"syntax-string\">\"!\"</span>);<br>}<br><br>greet(<span class=\"syntax-string\">\"Анна\"</span>); <span class=\"syntax-comment\">// \"Привет, Анна!\"</span></div><h3>Возврат значений</h3><div class=\"code-block\"><span class=\"syntax-keyword\">function</span> add(a, b) {<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">return</span> a + b;<br>}<br><br><span class=\"syntax-keyword\">let</span> result = add(<span class=\"syntax-number\">5</span>, <span class=\"syntax-number\">3</span>); <span class=\"syntax-comment\">// 8</span></div>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "Как объявить функцию в JavaScript?",
+      "options": ["func myFunction()", "function myFunction()", "def myFunction()", "create myFunction()"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q2",
+      "question": "Что делает ключевое слово return?",
+      "options": ["Завершает функцию", "Возвращает значение", "И то, и другое", "Печатает результат"],
+      "correctAnswer": 2
+    },
+    {
+      "id": "q3",
+      "question": "Сколько параметров может принимать функция?",
+      "options": ["Только один", "Максимум 10", "Любое количество", "Только четные числа"],
+      "correctAnswer": 2
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Моя первая функция",
+      "description": "Создайте функцию, которая принимает имя и возвращает приветствие.",
+      "codeExample": "// Ваш код здесь"
+    }
+  ],
+  "order": 1
+}

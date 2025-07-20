@@ -1,0 +1,35 @@
+{
+  "id": "lesson1",
+  "title": "Async/Await",
+  "description": "Современный способ работы с асинхронным кодом",
+  "content": "<h3>Синтаксис async/await</h3><p>Async/await делает асинхронный код более читаемым, позволяя писать его в синхронном стиле:</p><div class=\"code-block\"><span class=\"syntax-keyword\">async</span> <span class=\"syntax-keyword\">function</span> fetchData() {<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">try</span> {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"syntax-keyword\">const</span> response = <span class=\"syntax-keyword\">await</span> fetch(<span class=\"syntax-string\">'/api/data'</span>);<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"syntax-keyword\">const</span> data = <span class=\"syntax-keyword\">await</span> response.json();<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"syntax-keyword\">return</span> data;<br>&nbsp;&nbsp;} <span class=\"syntax-keyword\">catch</span> (error) {<br>&nbsp;&nbsp;&nbsp;&nbsp;console.error(<span class=\"syntax-string\">\"Ошибка:\"</span>, error);<br>&nbsp;&nbsp;}<br>}</div><h3>Преобразование промиса</h3><div class=\"code-block\"><span class=\"syntax-comment\">// Промис</span><br>fetchUser()<br>&nbsp;&nbsp;.then(user => console.log(user))<br>&nbsp;&nbsp;.catch(err => console.error(err));<br><br><span class=\"syntax-comment\">// Async/await</span><br><span class=\"syntax-keyword\">async</span> <span class=\"syntax-keyword\">function</span> getUser() {<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">try</span> {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"syntax-keyword\">const</span> user = <span class=\"syntax-keyword\">await</span> fetchUser();<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(user);<br>&nbsp;&nbsp;} <span class=\"syntax-keyword\">catch</span> (err) {<br>&nbsp;&nbsp;&nbsp;&nbsp;console.error(err);<br>&nbsp;&nbsp;}<br>}</div>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "Какое ключевое слово объявляет асинхронную функцию?",
+      "options": ["await", "async", "promise", "asynchronous"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q2",
+      "question": "Где можно использовать await?",
+      "options": ["Везде", "Только в async функциях", "Только с промисами", "Только в циклах"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q3",
+      "question": "Как обработать ошибки в async/await?",
+      "options": ["catch()", "try-catch", "error()", ".then()"],
+      "correctAnswer": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Async функция",
+      "description": "Перепишите промис с использованием async/await.",
+      "codeExample": "// Исходный промис\nfunction getData() {\n  return fetch('/api/data')\n    .then(response => response.json())\n    .then(data => data)\n    .catch(error => console.error(error));\n}\n\n// Перепишите с async/await"
+    }
+  ],
+  "order": 1
+}

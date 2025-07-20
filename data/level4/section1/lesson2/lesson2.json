@@ -1,0 +1,35 @@
+{
+  "id": "lesson2",
+  "title": "Промисы (Promises)",
+  "description": "Изучаем промисы для работы с асинхронным кодом",
+  "content": "<h3>Что такое промис?</h3><p>Промис — это объект, представляющий результат асинхронной операции. Он может находиться в одном из трех состояний: ожидание (pending), выполнено (fulfilled) или отклонено (rejected).</p><div class=\"code-block\"><span class=\"syntax-keyword\">const</span> promise = <span class=\"syntax-keyword\">new</span> Promise((resolve, reject) => {<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">const</span> success = <span class=\"syntax-keyword\">true</span>;<br>&nbsp;&nbsp;<br>&nbsp;&nbsp;<span class=\"syntax-keyword\">if</span> (success) {<br>&nbsp;&nbsp;&nbsp;&nbsp;resolve(<span class=\"syntax-string\">\"Операция успешна!\"</span>);<br>&nbsp;&nbsp;} <span class=\"syntax-keyword\">else</span> {<br>&nbsp;&nbsp;&nbsp;&nbsp;reject(<span class=\"syntax-string\">\"Произошла ошибка!\"</span>);<br>&nbsp;&nbsp;}<br>});</div><h3>Обработка промисов</h3><div class=\"code-block\">promise<br>&nbsp;&nbsp;.then(result => {<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(result); <span class=\"syntax-comment\">// \"Операция успешна!\"</span><br>&nbsp;&nbsp;})<br>&nbsp;&nbsp;.catch(error => {<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(error);<br>&nbsp;&nbsp;});</div>",
+  "tests": [
+    {
+      "id": "q1",
+      "question": "В каких состояниях может находиться промис?",
+      "options": ["2 состояния", "3 состояния", "4 состояния", "5 состояний"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q2",
+      "question": "Какой метод используется для обработки успешного выполнения промиса?",
+      "options": ["catch()", "then()", "finally()", "resolve()"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q3",
+      "question": "Как обработать ошибку в промисе?",
+      "options": ["try-catch", "catch()", "error()", "reject()"],
+      "correctAnswer": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Создание промиса",
+      "description": "Создайте промис, который разрешается через 2 секунды с сообщением 'Готово!'.",
+      "codeExample": "// Ваш код здесь"
+    }
+  ],
+  "order": 2
+}
