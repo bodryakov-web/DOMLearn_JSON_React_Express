@@ -7,14 +7,18 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { LogOut, Settings, BookOpen, Edit } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { LogOut, Settings, BookOpen, Edit, Plus } from "lucide-react";
 import RichTextEditor from "@/components/rich-text-editor";
 
 export default function AdminPanel() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const [selectedLesson, setSelectedLesson] = useState<string | null>(null);
+  const [selectedLevelId, setSelectedLevelId] = useState<string>("");
+  const [selectedSectionId, setSelectedSectionId] = useState<string>("");
+  const [selectedLessonId, setSelectedLessonId] = useState<string>("");
+  const [activeTab, setActiveTab] = useState("structure");
 
   const { data: levelsStructure } = useQuery({
     queryKey: ["/api/levels"],
@@ -37,6 +41,20 @@ export default function AdminPanel() {
       description: "Вы вышли из админ-панели",
     });
     setLocation("/");
+  };
+
+  const handleEditLesson = (levelId: string, sectionId: string, lessonId: string) => {
+    setSelectedLevelId(levelId);
+    setSelectedSectionId(sectionId);
+    setSelectedLessonId(lessonId);
+    setActiveTab("lessons");
+  };
+
+  const handleCreateNewLesson = () => {
+    setSelectedLevelId("level1");
+    setSelectedSectionId("section1");
+    setSelectedLessonId("");
+    setActiveTab("lessons");
   };
 
   return (
@@ -62,7 +80,7 @@ export default function AdminPanel() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Tabs defaultValue="structure" className="space-y-6">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="structure">Структура курса</TabsTrigger>
             <TabsTrigger value="lessons">Редактор уроков</TabsTrigger>
@@ -84,7 +102,11 @@ export default function AdminPanel() {
                             <BookOpen className="h-5 w-5 mr-2" />
                             {level.title}
                           </div>
-                          <Button variant="outline" size="sm">
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            onClick={() => handleEditLesson(level.id, level.sections[0], "lesson1")}
+                          >
                             <Edit className="h-4 w-4 mr-2" />
                             Редактировать
                           </Button>
@@ -95,10 +117,29 @@ export default function AdminPanel() {
                         <div className="grid gap-2 md:grid-cols-2">
                           {level.sections.map((sectionId, index) => (
                             <div key={sectionId} className="p-3 border border-border rounded">
-                              <h4 className="font-medium">Раздел {index + 1}</h4>
+                              <h4 className="font-medium flex items-center justify-between">
+                                Раздел {index + 1}
+                                <Button 
+                                  variant="ghost" 
+                                  size="sm"
+                                  onClick={() => handleEditLesson(level.id, sectionId, "lesson1")}
+                                >
+                                  <Edit className="h-3 w-3" />
+                                </Button>
+                              </h4>
                               <div className="text-sm text-muted-foreground mt-2">
-                                <div>• Урок 1</div>
-                                <div>• Урок 2</div>
+                                <div 
+                                  className="cursor-pointer hover:text-primary"
+                                  onClick={() => handleEditLesson(level.id, sectionId, "lesson1")}
+                                >
+                                  • Урок 1
+                                </div>
+                                <div 
+                                  className="cursor-pointer hover:text-primary"
+                                  onClick={() => handleEditLesson(level.id, sectionId, "lesson2")}
+                                >
+                                  • Урок 2
+                                </div>
                               </div>
                             </div>
                           ))}
@@ -114,10 +155,59 @@ export default function AdminPanel() {
           <TabsContent value="lessons">
             <Card>
               <CardHeader>
-                <CardTitle>Редактор уроков</CardTitle>
+                <CardTitle className="flex items-center justify-between">
+                  Редактор уроков
+                  <Button onClick={handleCreateNewLesson} className="bg-green-600 hover:bg-green-700">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Создать урок
+                  </Button>
+                </CardTitle>
+                <div className="flex gap-4 mt-4">
+                  <Select value={selectedLevelId} onValueChange={setSelectedLevelId}>
+                    <SelectTrigger className="w-48">
+                      <SelectValue placeholder="Выберите уровень" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {levelsStructure?.levels.map((level) => (
+                        <SelectItem key={level.id} value={level.id}>
+                          {level.title}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  
+                  <Select value={selectedSectionId} onValueChange={setSelectedSectionId}>
+                    <SelectTrigger className="w-48">
+                      <SelectValue placeholder="Выберите раздел" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {selectedLevelId && levelsStructure?.levels
+                        .find(l => l.id === selectedLevelId)?.sections
+                        .map((sectionId, index) => (
+                          <SelectItem key={sectionId} value={sectionId}>
+                            Раздел {index + 1}
+                          </SelectItem>
+                        ))}
+                    </SelectContent>
+                  </Select>
+                  
+                  <Select value={selectedLessonId} onValueChange={setSelectedLessonId}>
+                    <SelectTrigger className="w-48">
+                      <SelectValue placeholder="Выберите урок" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="lesson1">Урок 1</SelectItem>
+                      <SelectItem value="lesson2">Урок 2</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </CardHeader>
               <CardContent>
-                <RichTextEditor />
+                <RichTextEditor 
+                  levelId={selectedLevelId}
+                  sectionId={selectedSectionId}
+                  lessonId={selectedLessonId}
+                />
               </CardContent>
             </Card>
           </TabsContent>
