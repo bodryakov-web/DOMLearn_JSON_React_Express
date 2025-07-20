@@ -7,6 +7,11 @@ This is a full-stack JavaScript learning platform designed to help students lear
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Admin credentials: bodryakov.web / Anna-140275
+Admin panel access: /bod (changed from /admin)
+Interface language: Russian
+Design preference: Gray-blue color palette, minimalist adaptive design
+Mobile UI: Hamburger menu with only 4 level links, separate level pages with section navigation
 
 ## System Architecture
 

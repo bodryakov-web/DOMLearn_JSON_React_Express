@@ -95,28 +95,20 @@ export default function LevelPage() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {currentLevel.sections.map((sectionId, sectionIndex) => (
             <Card key={sectionId} className="hover:shadow-lg transition-shadow">
-              <CardHeader className="pb-4">
+              <CardHeader 
+                className="pb-4 cursor-pointer hover:bg-muted/50 transition-colors"
+                onClick={() => {
+                  console.log('Переход на раздел:', `/section/${levelId}/${sectionId}`);
+                  setLocation(`/section/${levelId}/${sectionId}`);
+                }}
+              >
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <BookOpen className="h-5 w-5 text-primary" />
-                    <span>Раздел {sectionIndex + 1}</span>
+                    <span className="text-blue-600 hover:text-blue-800">Раздел {sectionIndex + 1}</span>
                   </div>
                   <ChevronRight className="h-5 w-5 text-muted-foreground" />
                 </CardTitle>
-                
-                {/* Тестовая кнопка перехода */}
-                <div className="mt-2">
-                  <Button 
-                    variant="link" 
-                    className="text-blue-600 underline p-0 h-auto font-bold"
-                    onClick={() => {
-                      console.log('ТЕСТ: Переход на раздел', `/section/${levelId}/${sectionId}`);
-                      setLocation(`/section/${levelId}/${sectionId}`);
-                    }}
-                  >
-                    ➡️ Перейти к разделу {sectionIndex + 1}
-                  </Button>
-                </div>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">
