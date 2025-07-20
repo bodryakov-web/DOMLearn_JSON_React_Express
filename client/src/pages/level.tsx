@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams, Link } from "wouter";
+import { useParams, Link, useLocation } from "wouter";
 import { Moon, Sun, Code, ChevronRight, ArrowLeft, BookOpen } from "lucide-react";
 import { api } from "@/lib/api";
 import { useTheme } from "@/components/theme-provider";
@@ -10,6 +10,7 @@ import MobileNavigation from "@/components/mobile-navigation";
 
 export default function LevelPage() {
   const { levelId } = useParams<{ levelId: string }>();
+  const [, setLocation] = useLocation();
   const { theme, setTheme } = useTheme();
   
   const { data: levelsStructure, isLoading } = useQuery({
@@ -94,19 +95,20 @@ export default function LevelPage() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {currentLevel.sections.map((sectionId, sectionIndex) => (
             <Card key={sectionId} className="hover:shadow-lg transition-shadow">
-              <Link href={`/section/${levelId}/${sectionId}`}>
-                <CardHeader className="pb-4 cursor-pointer hover:bg-muted/50 transition-colors">
-                  <CardTitle className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <BookOpen className="h-5 w-5 text-primary" />
-                      <span className="hover:text-primary transition-colors">
-                        Раздел {sectionIndex + 1}
-                      </span>
-                    </div>
-                    <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                  </CardTitle>
-                </CardHeader>
-              </Link>
+              <CardHeader 
+                className="pb-4 cursor-pointer hover:bg-muted/50 transition-colors"
+                onClick={() => setLocation(`/section/${levelId}/${sectionId}`)}
+              >
+                <CardTitle className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <BookOpen className="h-5 w-5 text-primary" />
+                    <span className="hover:text-primary transition-colors">
+                      Раздел {sectionIndex + 1}
+                    </span>
+                  </div>
+                  <ChevronRight className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
+                </CardTitle>
+              </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">
                   Изучите основы и выполните практические задания
