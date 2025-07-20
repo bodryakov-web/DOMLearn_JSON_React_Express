@@ -130,16 +130,20 @@ export default function Home() {
                     {/* Sections */}
                     <div className="space-y-2 mb-4">
                       {level.sections.map((sectionId, index) => (
-                        <div
+                        <Link
                           key={sectionId}
-                          className="flex items-center justify-between p-2 rounded-md hover:bg-muted/50"
+                          href={`/section/${level.id}/${sectionId}`}
                         >
-                          <div className="flex items-center">
-                            <BookOpen className="h-4 w-4 mr-2 text-primary" />
-                            <span className="text-sm">Раздел {index + 1}</span>
+                          <div className="flex items-center justify-between p-2 rounded-md hover:bg-muted/50 cursor-pointer transition-colors">
+                            <div className="flex items-center">
+                              <BookOpen className="h-4 w-4 mr-2 text-primary" />
+                              <span className="text-sm text-blue-600 hover:text-blue-800 hover:underline font-medium">
+                                Раздел {index + 1}
+                              </span>
+                            </div>
+                            <ChevronRight className="h-4 w-4 text-muted-foreground" />
                           </div>
-                          <ChevronRight className="h-4 w-4 text-muted-foreground" />
-                        </div>
+                        </Link>
                       ))}
                     </div>
                     

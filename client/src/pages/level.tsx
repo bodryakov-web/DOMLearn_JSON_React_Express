@@ -94,23 +94,12 @@ export default function LevelPage() {
         {/* Sections Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {currentLevel.sections.map((sectionId, sectionIndex) => (
-            <Card 
-              key={sectionId} 
-              className="hover:shadow-lg transition-shadow cursor-pointer"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('КЛИК ПО КАРТОЧКЕ:', `/section/${levelId}/${sectionId}`);
-                setLocation(`/section/${levelId}/${sectionId}`);
-              }}
-            >
+            <Card key={sectionId} className="hover:shadow-lg transition-shadow">
               <CardHeader className="pb-4">
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <BookOpen className="h-5 w-5 text-primary" />
-                    <span className="text-blue-600 hover:text-blue-800 font-semibold">
-                      Раздел {sectionIndex + 1} - КЛИКНИ МЕНЯ!
-                    </span>
+                    <span>Раздел {sectionIndex + 1}</span>
                   </div>
                   <ChevronRight className="h-5 w-5 text-muted-foreground" />
                 </CardTitle>
