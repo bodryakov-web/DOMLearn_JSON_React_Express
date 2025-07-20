@@ -94,21 +94,19 @@ export default function LevelPage() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {currentLevel.sections.map((sectionId, sectionIndex) => (
             <Card key={sectionId} className="hover:shadow-lg transition-shadow">
-              <CardHeader className="pb-4">
-                <CardTitle className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <BookOpen className="h-5 w-5 text-primary" />
-                    <Link href={`/section/${levelId}/${sectionId}`}>
-                      <span className="hover:text-primary transition-colors cursor-pointer hover:underline">
+              <Link href={`/section/${levelId}/${sectionId}`}>
+                <CardHeader className="pb-4 cursor-pointer hover:bg-muted/50 transition-colors">
+                  <CardTitle className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      <span className="hover:text-primary transition-colors">
                         Раздел {sectionIndex + 1}
                       </span>
-                    </Link>
-                  </div>
-                  <Link href={`/section/${levelId}/${sectionId}`}>
-                    <ChevronRight className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
-                  </Link>
-                </CardTitle>
-              </CardHeader>
+                    </div>
+                    <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  </CardTitle>
+                </CardHeader>
+              </Link>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">
                   Изучите основы и выполните практические задания
