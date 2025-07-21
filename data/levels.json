@@ -9,7 +9,10 @@
         "section2",
         "section3"
       ],
-      "order": 1
+      "order": 1,
+      "sectionTitles": {
+        "section3": "РАЗДЕЛ 333"
+      }
     },
     {
       "id": "level2",

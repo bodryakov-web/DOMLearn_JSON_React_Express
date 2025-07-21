@@ -38,6 +38,7 @@ export const LevelSchema = z.object({
   description: z.string(),
   sections: z.array(z.string()), // section IDs
   order: z.number(),
+  sectionTitles: z.record(z.string()).optional(), // карта id раздела -> название
 });
 
 export const LevelsStructureSchema = z.object({
