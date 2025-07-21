@@ -6,7 +6,8 @@
       "description": "Изучение основ JavaScript",
       "sections": [
         "section1",
-        "section2"
+        "section2",
+        "section3"
       ],
       "order": 1
     },
